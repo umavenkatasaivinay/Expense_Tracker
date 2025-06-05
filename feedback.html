@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback - Expense Tracker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <style>
+    body {
+      background: linear-gradient(#0257a8, #a3d1f7);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .feedback-form {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+    }
+    textarea {
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="feedback-form">
+    <h2 class="text-center mb-4">We value your feedback!</h2>
+    <form id="feedbackForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Your name" required/>
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Your email" required/>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <select class="form-control" id="rating" required>
+          <option value="">Select rating</option>
+          <option value="5">★★★★★ - Excellent</option>
+          <option value="4">★★★★ - Good</option>
+          <option value="3">★★★ - Average</option>
+          <option value="2">★★ - Poor</option>
+          <option value="1">★ - Terrible</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="comments">Comments</label>
+        <textarea class="form-control" id="comments" rows="4" placeholder="Your suggestions..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-light btn-block">Submit Feedback</button>
+    </form>
+    <p class="mt-3 text-center" id="statusMsg"></p>
+  </div>
+
+  <script>
+    const feedbackForm = document.getElementById("feedbackForm");
+    const statusMsg = document.getElementById("statusMsg");
+
+    feedbackForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const feedback = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        rating: document.getElementById("rating").value,
+        comments: document.getElementById("comments").value,
+        date: new Date().toLocaleString()
+      };
+
+      let feedbackList = JSON.parse(localStorage.getItem("feedbacks")) || [];
+      feedbackList.push(feedback);
+      localStorage.setItem("feedbacks", JSON.stringify(feedbackList));
+
+      statusMsg.textContent = "Thank you for your feedback!";
+      feedbackForm.reset();
+    });
+  </script>
+</body>
+</html>

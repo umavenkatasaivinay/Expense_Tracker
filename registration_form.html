@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exxpense Tracker Registration Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="registration_form.css">
+
+</head>
+<body>
+   <nav>
+      <a href="home.html">Home</a>
+      <a href="registration_form.html" class="active">Registration Form</a>
+      <a href="savings.html">Savings</a>
+      <a href="bargraph.html">Overview</a>
+      <a href="wishlist.html">Wishlist</a>
+      <div class="dropdown">
+          <a href="#" class="dropbtn">Profile ⌄</a>
+          <div class="dropdown-content">
+            <a href="login_page.html">Login</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="login_page.html">Logout</a>
+          </div>
+        </div>
+      
+  </nav>
+    <div class="container bg-container-one d-flex justify-content-center">
+        <form id="regisform" class="m-3 p-5">
+            <div class="m-3">
+                <h1>Let me know Better about <span id="spn"></span></h1>
+            </div>
+            <div class="m-3" >
+                <h6>Gender</h6>
+            </div>
+            <div class="m-3">
+                <input id="gendermale" value="Male"  name="g" type="radio"/>
+                <label for="gendermale">Male</label>
+                <input id="genderfemale" value="Female" name="g" type="radio"/>
+                <label for="genderfemale">Female</label>
+            </div>
+            <div class="m-3">
+                <label for="salary">Salary</label>
+                <input  class="form-control" id="salary" type="number" placeholder="Enter your total salary"/>
+            </div>
+            <div class="m-3">
+                <label for="savings">what should be your Savings ?</label>
+                <input class="form-control" id="savings" type="number" placeholder="Enter your total savings"/>
+            </div>
+            <div class="m-3">
+                <label for="expen">what is your monthly expenditure ?</label>
+                <input class="form-control" id="expen" type="number" placeholder="Enter your total monthly expenditure"/>
+            </div>
+            <div class="m-3">
+                <h6>Select your monthly expenses .</h6>
+                <input id="expensesone"value="House Rent" type="checkbox"/>
+                <label for="expensesone">House Rent</label>
+                <input id="expensestwo" value="Electricity Bill" type="checkbox"/>
+                <label for="expensestwo">Electricity Bill</label>
+                <input id="expensesthree" value="Grocery" type="checkbox"/>
+                <label for="expensesthree">Grocery</label>
+                <input id="expensesfour" value="Education" type="checkbox"/>
+                <label for="expensesfour">Education</label>
+                <input id="expensesfive" value="Paper Bill" type="checkbox"/>
+                <label for="expensesfive">Paper Bill</label>
+                <input id="expensessix" value="Mineral Water Bill" type="checkbox"/>
+                <label for="expensessix">Mineral Water Bill</label>
+                <input id="expensesseven" value="Milk Bill" type="checkbox"/>
+                <label for="expensesseven">Milk Bill</label>
+                <input id="expenseseight" value="others" type="checkbox"/>
+                <label for="expenseseight">others</label>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <button class="btn btn-primary"> <a  class="text-light" href="home.html">Submit</a></button> 
+              </div>
+        </form>
+    </div>
+    <script src="et.js" defer></script>
+</body>
+<script>
+    let span1=document.getElementById("spn");
+    let nam=localStorage.getItem("name");
+    span1.textContent=nam;
+    let rf=document.getElementById("regisform");
+    rf.addEventListener("submit",function(event){
+        event.preventDefault();
+    })
+    
+    
+    let salary=document.getElementById("salary");
+    let exp1=document.getElementById("expensesone");
+    let exp2=document.getElementById("expensestwo");
+    let exp3=document.getElementById("expensesthree");
+    let exp4=document.getElementById("expensesfour");
+    let exp5=document.getElementById("expensesfive");
+    let exp6=document.getElementById("expensessix");
+    let exp7=document.getElementById("expensesseven");
+    let exp8=document.getElementById("expenseseight");
+    let gm=document.getElementById("gendermale");
+    let gf=document.getElementById("genderfemale");
+    let savings=document.getElementById("savings");
+    let expenses=document.getElementById("expen");
+    let formdetails={
+        gender:gm,
+        salary:salary,
+        savings:savings,
+        expen:expenses,
+        exarray:[]
+    }
+console.log(formdetails);
+   gm.addEventListener("change",function(event){
+      formdetails.gender=event.target.value;
+      localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+   })
+   gf.addEventListener("change",function(event){
+      formdetails.gender=event.target.value;
+      localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+   })
+   salary.addEventListener("change",function(event){
+      formdetails.salary=event.target.value;
+      localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    
+    })
+   savings.addEventListener("change",function(event){
+      formdetails.savings=event.target.value;
+      localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+   })
+   expenses.addEventListener("change",function(event){
+      formdetails.expen=event.target.value;
+      localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+   })
+   exp1.addEventListener("change",function(event){
+       if(exp1.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+       }else if(exp1.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+   exp2.addEventListener("change",function(event){
+    if(exp2.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp2.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+   exp3.addEventListener("change",function(event){
+    if(exp3.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp3.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+})
+   exp4.addEventListener("change",function(event){
+    if(exp4.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp4.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+   exp5.addEventListener("change",function(event){
+    if(exp5.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp5.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+   exp6.addEventListener("change",function(event){
+    if(exp6.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp6.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+   exp7.addEventListener("change",function(event){
+    if(exp7.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp7.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+   exp8.addEventListener("change",function(event){
+    if(exp8.checked===true){
+       formdetails.exarray.push(event.target.value);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }else if(exp8.checked===false){
+       let x=formdetails.exarray.indexOf(event.target.value);
+       formdetails.exarray.splice(x,1);
+       localStorage.setItem("moneydetails",JSON.stringify(formdetails));
+    }
+   })
+</script>
+</html>

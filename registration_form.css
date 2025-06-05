@@ -1,0 +1,159 @@
+
+    nav {
+        background-color: #007BFF;
+        color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      nav a.active {
+        color: #007BFF; /* Bootstrap blue */
+        font-weight: bold;
+        background-color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border-bottom: 2px solid #007BFF;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+      
+      nav a:hover {
+        color: #ffd700;
+        text-decoration: none;
+      }
+      
+      /* Dropdown container */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      /* Button for the dropdown */
+      .dropbtn {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 1rem;
+        display: inline-block;
+      }
+      
+      /* Dropdown content */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 160px;
+        right: 0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 6px;
+      }
+      
+      /* Style for links inside dropdown */
+      .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-weight: normal;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .dropdown-content a:last-child {
+        border-bottom: none;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
+      
+      /* Show dropdown on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+      /* Optional: highlight Profile on hover */
+      .dropdown:hover .dropbtn {
+        color: #ffd700;
+      }
+    /* Form Styling */
+
+
+
+
+
+    .bg-container-one {
+    background-image: linear-gradient(#34e8eb, #eb34cc);
+    max-width: 800px; /* Narrow the background width */
+    width: 100%;
+    height: auto; /* Allow the height to adjust based on content */
+    padding: 2rem; /* Add padding around the form */
+    background-size: cover;
+    border-radius: 10px; /* Optional: Adds rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    font-family:Open Sans; /* Centers the form on the page */
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    padding: 3rem; /* Padding inside the form */
+    box-sizing: border-box;
+}
+
+    
+    h1, h6, label {
+        color: #0044cc;
+    }
+    
+    h1 {
+        font-weight: bold;
+    }
+    
+    label {
+        font-weight: 500;
+    }
+    
+    input[type="radio"], input[type="checkbox"] {
+        margin-right: 8px;
+        accent-color: #007BFF;
+    }
+    
+    .btn-primary {
+        background-color: #007BFF;
+        border: none;
+        width: 100%; /* Ensures the button takes up full width inside form */
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    
+    .btn a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .m-3 {
+        margin-bottom: 1rem; /* Adjusting margin for better space distribution */
+    }
+    
+    /* Optional - make sure the page layout doesn't allow overflow */
+    body, html {
+        overflow-x: hidden;
+    }
+    

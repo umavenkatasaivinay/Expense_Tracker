@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Monthly Expenses Overview</title>
+  <link rel="stylesheet" href="bargraph.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="registration_form.html">Registration Form</a>
+        <a href="savings.html">Savings</a>
+        <a href="bargraph.html" class="active">Overview</a>
+        <a href="wishlist.html">Wishlist</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Profile ⌄</a>
+            <div class="dropdown-content">
+              <a href="login_page.html">Login</a>
+              <a href="feedback.html">Feedback</a>
+              <a href="login_page.html">Logout</a>
+            </div>
+          </div>
+        
+    </nav>
+
+  <div class="container bg-container-five">
+    <h2>💸 Daily Expenses - April 2025</h2>
+    <canvas id="expensesChart" width="400" height="200"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('expensesChart').getContext('2d');
+
+    // Example data: Daily expenses for April (30 days)
+    const dailyExpenses = [250, 300, 150, 0, 0, 500, 100, 0, 0, 350, 200, 400, 300, 0, 0, 0, 100, 250, 350, 0, 0, 100, 500, 600, 0, 200, 0, 0, 150, 0];
+
+    const expensesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Array.from({ length: 30 }, (_, i) => `Day ${i + 1}`),
+        datasets: [{
+          label: 'Daily Expenses (₹)',
+          data: dailyExpenses,
+          backgroundColor: '#dc3545',
+          borderRadius: 5,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'April Expenses Breakdown',
+            font: {
+              size: 20
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: (context) => `₹${context.parsed.y}`
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Amount (₹)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Day of the Month'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wishlist - Savings Tracker</title>
+  <link rel="stylesheet" href="wishlist.css">
+</head>
+<body>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="registration_form.html">Registration Form</a>
+        <a href="savings.html">Savings</a>
+        <a href="bargraph.html">Overview</a>
+        <a href="wishlist.html"  class="active">Wishlist</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Profile ⌄</a>
+            <div class="dropdown-content">
+              <a href="login_page.html">Login</a>
+              <a href="feedback.html">Feedback</a>
+              <a href="login_page.html">Logout</a>
+            </div>
+          </div>
+        
+    </nav>
+
+  <div class="container bg-container-four">
+    <div class="form-box">
+      <h2>Add Item to Wishlist</h2>
+      <input type="text" id="itemName" placeholder="Item name (e.g., Headphones)">
+      <input type="number" id="itemPrice" placeholder="Price in ₹">
+      <select id="itemPriority">
+        <option value="High">High Priority</option>
+        <option value="Medium">Medium Priority</option>
+        <option value="Low">Low Priority</option>
+      </select>
+      <button onclick="addItem()">Add to Wishlist</button>
+    </div>
+
+    <div class="wishlist-box">
+      <h2>My Wishlist</h2>
+      <div id="wishlistItems"></div>
+      <div class="total-amount" id="totalNeeded">Total Needed: ₹0</div>
+    </div>
+  </div>
+
+  <script>
+    let wishlist = [];
+
+    function addItem() {
+      const name = document.getElementById('itemName').value;
+      const price = parseFloat(document.getElementById('itemPrice').value);
+      const priority = document.getElementById('itemPriority').value;
+
+      if (name && !isNaN(price)) {
+        wishlist.push({ name, price, priority });
+        updateWishlist();
+        document.getElementById('itemName').value = '';
+        document.getElementById('itemPrice').value = '';
+      } else {
+        alert("Please enter valid item name and price.");
+      }
+    }
+
+    function updateWishlist() {
+      const list = document.getElementById('wishlistItems');
+      list.innerHTML = '';
+      let total = 0;
+
+      wishlist.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'wishlist-item';
+        itemDiv.innerHTML = `
+          <span>${item.name}</span>
+          <span>₹${item.price}</span>
+          <span class="priority ${item.priority}">${item.priority}</span>
+        `;
+        list.appendChild(itemDiv);
+        total += item.price;
+      });
+
+      document.getElementById('totalNeeded').textContent = `Total Needed: ₹${total}`;
+    }
+  </script>
+
+</body>
+</html>
